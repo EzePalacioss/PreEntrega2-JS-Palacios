@@ -23,7 +23,7 @@ const nuevoCelular = {
 };
 
 tiendaDigital.push(nuevoCelular);
-tiendaDigital.sort((a,b) => b.precio - a.precio)
+tiendaDigital.sort((a, b) => parseFloat(b.precio.slice(1)) - parseFloat(a.precio.slice(1)));
 
 function conStock() {
     return tiendaDigital.filter(cel => cel.stock > 0);
@@ -50,8 +50,21 @@ function comprarCelular(){
     const celulares = productosFiltrados.map((cel, index) => 
         `${index + 1} ${cel.nombre} | Precio: ${cel.precio} | Stock: ${cel.stock}`).join('\n');
     prompt(mensaje + celulares);
+
+}
+
+
+function añadirProducto() {
+let añadirProductos = conStock();
+if(añadirProductos.length >= 0 && añadirProductos.length <= 8){
+alert('Añadido al carrito')
+}else{
+    alert('Elige una opción válida')
+}
 }
 
 comprarCelular();
+añadirProducto()
+
 
 
